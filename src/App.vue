@@ -103,37 +103,33 @@ const menu_items = ref([
       :ellipsis="true"
       @select="handleSelect"
     >
-      <div class="flex-grow-left" />
       <img
           src="./assets/logo-title.jpg"
           alt="logo with title"
+          style="vertical-align:middle;margin:0px 200px"
       />
-      <div class="flex-grow-middle" />
-      <el-menu-item index="0">首页</el-menu-item>
+      <el-menu-item class="menu-item" index="0">首页</el-menu-item>
       <template v-for="item in menu_items">
-          <el-sub-menu :index=item.key>
+          <el-sub-menu class="menu-item" :index=item.key>
           <template #title>{{ item.item_name }}</template>
           <template v-for="sub_item in item.sub_items">
             <el-menu-item :index=sub_item.key>{{ sub_item.item_name }}</el-menu-item>
           </template>
         </el-sub-menu>
       </template>
+      <a href="https://github.com/WANGH950/numerical-computing-platform" title="github" target="_blank">
+        <img
+          src="./assets/github-mark.svg"
+          alt="github"
+          width="30pt"
+          height="30pt"
+          style="vertical-align:middle;margin:10px 20px;"
+      />
+      </a>
     </el-menu>
   </header>
   
 </template>
 
 <style>
-.flex-grow-left {
-  flex-grow: 0.2;
-}
-.flex-grow-middle {
-  flex-grow: 0.3;
-}
-el-button{
-  float: right;
-}
-.el-menu{
-  width: 100%;
-}
 </style>
