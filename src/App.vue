@@ -13,11 +13,13 @@ const menu_items = ref([
     sub_items: [
       {
         key: "1-1",
-        item_name: "水泥/沥青材料力学"
+        item_name: "材料力学",
+        sub_url: "/application-scenarios/mechanics-materials"
       },
       {
         key: "1-2",
-        item_name: "矩阵奇异值分解"
+        item_name: "奇异值分解",
+        sub_url: "/application-scenarios/singular-value-decomposition"
       }
     ]
   },
@@ -27,15 +29,18 @@ const menu_items = ref([
     sub_items: [
       {
         key: "2-1",
-        item_name: "连续元"
+        item_name: "连续元",
+        sub_url: "/finite-element/continuous-elements"
       },
       {
         key: "2-2",
-        item_name: "间断元"
+        item_name: "间断元",
+        sub_url: "/finite-element/discontinuous-elements"
       },
       {
         key: "2-3",
-        item_name: "弱有限元"
+        item_name: "弱有限元",
+        sub_url: "/finite-element/weak-finite-elements"
       }
     ]
   },
@@ -45,11 +50,13 @@ const menu_items = ref([
     sub_items: [
       {
         key: "3-1",
-        item_name: "分子动力学"
+        item_name: "分子动力学",
+        sub_url: "/particle-dynamics/molecular-dynamics"
       },
       {
         key: "3-2",
-        item_name: "粗粒子动力学"
+        item_name: "粗粒子动力学",
+        sub_url: "/particle-dynamics/coarse-particle-dynamics"
       }
     ]
   },
@@ -64,15 +71,18 @@ const menu_items = ref([
     sub_items: [
       {
         key: "5-1",
-        item_name: "计算机视觉"
+        item_name: "计算机视觉",
+        sub_url: "/machine-learning/computer-vision"
       },
       {
         key: "5-2",
-        item_name: "自然语言处理"
+        item_name: "自然语言处理",
+        sub_url: "/machine-learning/natural-language-processing"
       },
       {
         key: "5-3",
-        item_name: "科学计算"
+        item_name: "科学计算",
+        sub_url: "/machine-learning/scientific-computing"
       }
     ]
   },
@@ -87,7 +97,8 @@ const menu_items = ref([
     sub_items: [
       {
         key: "7-1",
-        item_name: "平台研发团队"
+        item_name: "平台研发团队",
+        sub_url: "/about-us/platform-r-d-team"
       }
     ]
   }
@@ -103,17 +114,26 @@ const menu_items = ref([
       :ellipsis="true"
       @select="handleSelect"
     >
+      <div class="flex-grow-left" />
       <img
-          src="./assets/logo-title.jpg"
-          alt="logo with title"
-          style="vertical-align:middle;margin:0px 200px"
+        src="./assets/logo-title.jpg"
+        alt="logo with title"
       />
-      <el-menu-item class="menu-item" index="0">首页</el-menu-item>
+      <div class="flex-grow-middle" />
+      <router-link to="/home">
+        <el-menu-item class="menu-item" index="0">
+          首页
+        </el-menu-item>
+      </router-link>
       <template v-for="item in menu_items">
           <el-sub-menu class="menu-item" :index=item.key>
           <template #title>{{ item.item_name }}</template>
           <template v-for="sub_item in item.sub_items">
-            <el-menu-item :index=sub_item.key>{{ sub_item.item_name }}</el-menu-item>
+            <router-link :to=sub_item.sub_url>
+              <el-menu-item :index=sub_item.key>
+                {{ sub_item.item_name }}
+              </el-menu-item>
+            </router-link>
           </template>
         </el-sub-menu>
       </template>
@@ -124,12 +144,20 @@ const menu_items = ref([
           width="30pt"
           height="30pt"
           style="vertical-align:middle;margin:10px 20px;"
-      />
+        />
       </a>
     </el-menu>
   </header>
-  
+
+  <!-- 路由出口 -->
+  <router-view></router-view>
 </template>
 
 <style>
+.flex-grow-left {
+  flex-grow: 0.2;
+}
+.flex-grow-middle {
+  flex-grow: 0.3;
+}
 </style>
