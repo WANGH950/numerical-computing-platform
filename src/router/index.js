@@ -9,6 +9,7 @@ import WeakFiniteElements from '@/components/finite-element/WeakFiniteElements.v
 import MolecularDynamics from '@/components/particle-dynamics/MolecularDynamics.vue'
 import CoarseParticleDynamics from '@/components/particle-dynamics/CoarseParticleDynamics.vue'
 import ComputerVision from '@/components/machine-learning/ComputerVision.vue'
+import ImageSegmentation from '@/components/machine-learning/computer-vision/ImageSegmentation.vue'
 import NaturalLanguageProcessing from '@/components/machine-learning/NaturalLanguageProcessing.vue'
 import ScientificComputing from '@/components/machine-learning/ScientificComputing.vue'
 import PlatformRDTeam from '@/components/about-us/PlatformRDTeam.vue'
@@ -20,49 +21,84 @@ export default createRouter({
         path: '/home', 
         component: Home
     },
-    { 
-        path: '/application-scenarios/mechanics-materials', 
-        component: MechanicsMaterials
+    {
+        path: '/application-scenarios',
+        children: [
+            { 
+                path: 'mechanics-materials', 
+                component: MechanicsMaterials
+            },
+            {
+                path: 'singular-value-decomposition',
+                component: SingularValueDecomposition
+            },
+        ]
     },
     {
-        path: '/application-scenarios/singular-value-decomposition',
-        component: SingularValueDecomposition
+        path: '/finite-element',
+        children: [
+            {
+                path: 'continuous-elements',
+                component: ContinuousElements
+            },
+            {
+                path: 'discontinuous-elements',
+                component: DiscontinuousElements
+            },
+            {
+                path: 'weak-finite-elements',
+                component: WeakFiniteElements
+            },
+        ]
     },
     {
-        path: '/finite-element/continuous-elements',
-        component: ContinuousElements
+        path: '/particle-dynamics',
+        children: [
+            {
+                path: 'molecular-dynamics',
+                component: MolecularDynamics
+            },
+            {
+                path: 'coarse-particle-dynamics',
+                component: CoarseParticleDynamics
+            }
+        ]
     },
     {
-        path: '/finite-element/discontinuous-elements',
-        component: DiscontinuousElements
+        path: '/machine-learning',
+        children: [
+            {
+                path: 'computer-vision',
+                component: ComputerVision
+            },
+            {
+                path: 'computer-vision/image-segmentation',
+                component: ImageSegmentation
+            },
+            {
+                path: 'natural-language-processing',
+                component: NaturalLanguageProcessing
+            },
+            {
+                path: 'scientific-computing',
+                component: ScientificComputing
+            }
+        ]
     },
     {
-        path: '/finite-element/weak-finite-elements',
-        component: WeakFiniteElements
+        path: '/data-mechanism',
+        children: [
+
+        ]
     },
     {
-        path: '/particle-dynamics/molecular-dynamics',
-        component: MolecularDynamics
-    },
-    {
-        path: '/particle-dynamics/coarse-particle-dynamics',
-        component: CoarseParticleDynamics
-    },
-    {
-        path: '/machine-learning/computer-vision',
-        component: ComputerVision
-    },
-    {
-        path: '/machine-learning/natural-language-processing',
-        component: NaturalLanguageProcessing
-    },
-    {
-        path: '/machine-learning/scientific-computing',
-        component: ScientificComputing
-    },
-    {
-        path: '/about-us/platform-r-d-team',
-        component: PlatformRDTeam
+        path: '/about-us',
+        children: [
+            {
+                path: 'platform-r-d-team',
+                component: PlatformRDTeam
+            }
+        ]
     }
   ],
 })

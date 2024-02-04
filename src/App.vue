@@ -2,9 +2,6 @@
 import { ref } from 'vue'
 
 const activeIndex = ref('0')
-const handleSelect = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath)
-}
 
 const menu_items = ref([
   {
@@ -106,13 +103,12 @@ const menu_items = ref([
 </script>
 
 <template>
-  <header>
+  <el-header>
     <el-menu
       :default-active="activeIndex"
       class="el-menu"
       mode="horizontal"
       :ellipsis="true"
-      @select="handleSelect"
     >
       <div class="flex-grow-left" />
       <img
@@ -147,10 +143,10 @@ const menu_items = ref([
         />
       </a>
     </el-menu>
-  </header>
-
-  <!-- 路由出口 -->
-  <router-view></router-view>
+  </el-header>
+  <el-main>
+    <router-view></router-view>
+  </el-main>
 </template>
 
 <style>
